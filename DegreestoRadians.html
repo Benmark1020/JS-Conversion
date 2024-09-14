@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degrees to Radians Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 320px;
+        }
+        h1 {
+            color: #000;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .input-group, .result-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input, .result-box {
+            width: calc(100% - 20px); /* Ensure consistent width with padding */
+            max-width: 280px; /* Ensure consistent width */
+            padding: 10px;
+            border: 1px solid #ccc; /* Same border for consistency */
+            border-radius: 4px;
+            font-size: 1em;
+            outline: none;
+            box-sizing: border-box; /* Includes padding and border in total width */
+        }
+        input {
+            -moz-appearance: textfield; /* Firefox */
+            -webkit-appearance: none; /* Safari and Chrome */
+            appearance: none; /* Edge and other browsers */
+        }
+        input::-webkit-inner-spin-button,
+        input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .result-box {
+            background: #ffffff; /* Same background color as input */
+            text-align: center; /* Center text like input field */
+            height: 40px; /* Match input height */
+            line-height: 20px; /* Adjust for vertical alignment */
+            border: 1px solid #ccc; /* Same border as input */
+            border-radius: 4px; /* Match border radius */
+            box-sizing: border-box; /* Includes padding and border in total width */
+        }
+        .footer {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #333;
+            background: transparent;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        button:hover {
+            color: #fff;
+            background: #333;
+            border-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Degrees to Radians Converter</h1>
+        
+        <!-- Degrees Input -->
+        <div class="input-group">
+            <label for="degrees">Degrees:</label>
+            <input type="number" id="degrees" placeholder="Enter degrees">
+        </div>
+        
+        <!-- Result Display -->
+        <div class="result-group">
+            <label class="result-label" for="radians">Radians:</label>
+            <div id="result" class="result-box"></div> <!-- Result box styled like input -->
+        </div>
+        
+        <!-- Buttons -->
+        <div class="footer">
+            <button id="convertBtn">Convert</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to convert degrees to radians
+        function convertDegreesToRadians() {
+            const degrees = parseFloat(document.getElementById('degrees').value);
+            
+            if (!isNaN(degrees) && degrees >= 0) {
+                const radians = degrees * (Math.PI / 180);
+                document.getElementById('result').textContent = `${radians.toFixed(4)}`;
+            } else {
+                document.getElementById('result').textContent = 'Invalid input';
+            }
+        }
+
+        // Function to clear the input field and result
+        function resetFields() {
+            document.getElementById('degrees').value = '';
+            document.getElementById('result').textContent = ''; // Clear result box
+        }
+
+        // Add event listeners to buttons
+        document.getElementById('convertBtn').addEventListener('click', convertDegreesToRadians);
+        document.getElementById('resetBtn').addEventListener('click', resetFields);
+    </script>
+</body>
+</html>
